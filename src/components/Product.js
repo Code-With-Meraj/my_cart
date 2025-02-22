@@ -7,39 +7,28 @@ export default function Product({
   onRemove,
 }) {
   return (
-    <div className="row align-items-center row mt-3">
-      <div className="col-5">
-        <h2>
-          {product.name}
-          <span className="badge text-bg-secondary">₹{product.price}</span>
-        </h2>
+    <div className="product-card">
+      <h2>
+        {product.name}{" "}
+        <span className="badge price-badge">₹{product.price}</span>
+      </h2>
+      <div className="quantity-controls">
+        <button
+          className="btn btn-sm btn-danger"
+          onClick={onDecrement}
+          disabled={product.quantity === 0}
+        >
+          -
+        </button>
+        <span className="quantity-text">{product.quantity}</span>
+        <button className="btn btn-sm btn-success" onClick={onIncrement}>
+          +
+        </button>
       </div>
-      <div className="col-3">
-        <div className="btn-group" role="group" aria-label="Quantity controls">
-          <button
-            type="button"
-            className="btn btn-danger"
-            onClick={onDecrement}
-            disabled={product.quantity === 0}
-          >
-            -
-          </button>
-          <button type="button" className="btn btn-warning">
-            Quantity: {product.quantity}
-          </button>
-          <button
-            type="button"
-            className="btn btn-success"
-            onClick={onIncrement}
-          >
-            +
-          </button>
-        </div>
-      </div>
-      <div className="col-2 text-end">
-        <strong>₹{product.quantity * product.price}</strong>
-      </div>
-      <button className="col-2 btn btn-danger" onClick={onRemove}>
+      <strong className="total-price">
+        ₹{product.quantity * product.price}
+      </strong>
+      <button className="btn btn-sm btn-danger remove-btn" onClick={onRemove}>
         Remove
       </button>
     </div>

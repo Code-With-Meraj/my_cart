@@ -1,7 +1,11 @@
 import React from "react";
 import Product from "./Product";
 
-export default function ProductList({ productList, onQuantityChange, onRemove }) {
+export default function ProductList({
+  productList,
+  onQuantityChange,
+  onRemove,
+}) {
   return (
     <>
       {productList.map((product, index) => (
@@ -16,7 +20,3 @@ export default function ProductList({ productList, onQuantityChange, onRemove })
     </>
   );
 }
-
-
-
-

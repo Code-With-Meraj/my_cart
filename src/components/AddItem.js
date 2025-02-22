@@ -21,7 +21,7 @@ export default function AddItem({ onAddProduct }) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="row align-items-center">
-        <div className="col-4">
+        <div className="col-4 mb-4">
           <label htmlFor="itemName" className="form-label">
             Name
           </label>
@@ -34,7 +34,7 @@ export default function AddItem({ onAddProduct }) {
             onChange={(e) => setName(e.target.value)}
           />
         </div>
-        <div className="col-4">
+        <div className="col-4 mb-4">
           <label htmlFor="itemPrice" className="form-label">
             Price (₹)
           </label>
@@ -47,7 +47,7 @@ export default function AddItem({ onAddProduct }) {
             onChange={(e) => setPrice(e.target.value)}
           />
         </div>
-        <div className="col-4 d-flex align-items-end">
+        <div className="col-4 mb -2 ">
           <button type="submit" className="btn btn-primary w-100">
             Add
           </button>
