@@ -1,28 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-export default function OrderHistory() {
-  const [orders, setOrders] = useState([]);
+export default function OrderHistory({ orders }) {
+  console.log("OrderHistory received orders:", orders); 
 
-  useEffect(() => {
-    const savedOrders = JSON.parse(localStorage.getItem("orders")) || [];
-    setOrders(savedOrders);
-  }, []);
+  if (!orders || orders.length === 0) {
+    return <p>No past orders.</p>; 
+  }
 
   return (
-    <div className="card p-3 mt-3">
-      <h4>Order History</h4>
-      {orders.length === 0 ? (
-        <p>No past orders.</p>
-      ) : (
-        orders.map((order, index) => (
-          <div key={index} className="border-bottom pb-2 mb-2">
-            <p>
-              <strong>Order #{index + 1}</strong>
-            </p>
-            <p>Total Amount: ₹{order.totalAmount}</p>
-          </div>
-        ))
-      )}
+    <div>
+      <h2>Order History</h2>
+      {orders.map((order, index) => (
+        <div key={index} className="order-card">
+          <p>
+            <strong>Order Date:</strong> {order.date}
+          </p>
+          <p>
+            <strong>Total Amount:</strong> ₹{order.totalAmount}
+          </p>
+          <h4>Items:</h4>
+          <ul>
+            {order.items.map((item, i) => (
+              <li key={i}>
+                {item.name} (x{item.quantity}) - ₹{item.price * item.quantity}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   );
 }

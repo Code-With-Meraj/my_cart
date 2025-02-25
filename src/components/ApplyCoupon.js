@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-export default function ApplyCoupon({ setDiscount }) {
-  const [coupon, setCoupon] = useState("");
+export default function ApplyCoupon({ setDiscount, generatedCoupons }) {
+  const [coupon, setCoupon] = useState(0);
 
   const applyCoupon = () => {
-    if (coupon === "DISCOUNT10") {
-      setDiscount(10); // 10% discount
-      alert("Coupon Applied! 10% Discount.");
+    if (generatedCoupons[coupon]) {
+      setDiscount(generatedCoupons[coupon]);
+      alert(`Coupon Applied! ${generatedCoupons[coupon]}% Discount.`);
     } else {
       alert("Invalid Coupon Code.");
     }

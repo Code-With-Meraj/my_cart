@@ -41,7 +41,7 @@ export default function AddItem({ onAddProduct }) {
           <input
             type="number"
             className="form-control"
-            id="itemPrice"
+            id="itemPrice" 
             placeholder="Enter item price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}

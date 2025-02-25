@@ -1,30 +1,34 @@
 import React from "react";
 
-export default function CartSummary({ totalAmount }) {
-  const tax = totalAmount * 0.1;
-  const grandTotal = totalAmount + tax;
+export default function CartSummary({ subtotal, tax, discount, totalAmount, setDiscount }) {
+  const discountAmount = (subtotal * discount) / 100;
+  const amountAfterDiscount = subtotal - discountAmount;
 
   return (
-    <div className="cart-summary">
+    <div className="card p-3 mt-3">
       <h4>Cart Summary</h4>
+      <p>Subtotal: ₹{subtotal.toFixed(2)}</p>
+
       <p>
-        <strong>Total Items:</strong> {totalAmount > 0 ? "Multiple" : "None"}
+        Discount (%):{" "}
+        <input
+          type="number"
+          value={discount}
+          onChange={(e) => {
+            const value = parseFloat(e.target.value) || 0;
+            setDiscount(value >= 0 ? value : 0);
+          }}
+          min="0"
+          max="100"
+        />
       </p>
+
+      <p>Discount Amount: ₹{discountAmount.toFixed(2)}</p>
+      <p>Amount After Discount: ₹{amountAfterDiscount.toFixed(2)}</p>
+      <p>Tax (18% on discounted amount): +₹{tax.toFixed(2)}</p>
       <p>
-        <strong>Subtotal:</strong> ₹{totalAmount.toFixed(2)}
+        <strong>Total Payable: ₹{totalAmount.toFixed(2)}</strong>
       </p>
-      <p>
-        <strong>Tax (10%):</strong> ₹{tax.toFixed(2)}
-      </p>
-      <h3>
-        <strong>Grand Total:</strong> ₹{grandTotal.toFixed(2)}
-      </h3>
-      <input
-        type="text"
-        className="coupon-input"
-        placeholder="Enter Coupon Code"
-      />
-      <button className="btn btn-success apply-coupon">Apply Coupon</button>
     </div>
   );
 }
