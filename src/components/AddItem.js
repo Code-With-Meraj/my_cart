@@ -31,7 +31,7 @@ export default function AddItem({ onAddProduct }) {
             id="itemName"
             placeholder="Enter item name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)} 
           />
         </div>
         <div className="col-4 mb-4">

@@ -89,7 +89,7 @@ function App() {
       )
     );
     handleRemoveFromWishlist(product.name);
-    setToastMessage(`${product.name} moved to Cart`);
+    setToastMessage(`${product.name} moved to Cart`); 
   };
 
   const handlePayNow = () => {
